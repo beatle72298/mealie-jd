@@ -1,3 +1,13 @@
+<h1>Basic Front-End Modifications and Perks</h1>
+<h2>Proposed Changes/To-Do</h2>
+<ul>
+  <li>Move the recipe notes section to above the actual recipe steps</li>
+  <li>iFrame modal default for opening in-content links, or at least auto-detection of YouTube links, as most of my recipes I like to provide a YouTube video. Even better if we create a method to auto-ingest/scrape said YouTube video (JDownloader)</li>
+  <li>If a link is in the description, apply it to the thumbnail / create a link on the thumbnail/recipe image as well.</li>
+  <li>If a link is provided in the description, add it to the Original URL field automatically. May need to look into an approval system for this. Simple yes/no popup. Maximum this is part of a new system "Links" that we build out.</li>
+</ul>
+<br>
+<h1>Original Readme Below:</h1>
 [![Latest Release][latest-release-shield]][latest-release-url]
 [![Contributors][contributors-shield]][contributors-url]
 [![Stargazers][stars-shield]][stars-url]
