@@ -38,12 +38,13 @@
               <RecipePageOrganizers v-if="$vuetify.breakpoint.mdAndUp" :recipe="recipe" @item-selected="chipClicked" />
             </v-col>
             <v-divider v-if="$vuetify.breakpoint.mdAndUp && !isCookMode" class="my-divider" :vertical="true" />
-
+            <RecipeNotes v-model="recipe.notes" :edit="isEditForm" />
             <!--
               the right column is always rendered, but it's layout width is determined by where the left column is
               rendered.
             -->
             <v-col cols="12" sm="12" :md="8 + (isCookMode ? 1 : 0) * 4" :lg="8 + (isCookMode ? 1 : 0) * 4">
+              <RecipeNotes v-model="recipe.notes" :edit="isEditForm" />
               <RecipePageInstructions
                 v-model="recipe.recipeInstructions"
                 :assets.sync="recipe.assets"
@@ -57,7 +58,7 @@
               <div v-if="!$vuetify.breakpoint.mdAndUp">
                 <RecipePageOrganizers :recipe="recipe" />
               </div>
-              <RecipeNotes v-model="recipe.notes" :edit="isEditForm" />
+
             </v-col>
           </v-row>
           <RecipePageFooter :recipe="recipe" />
