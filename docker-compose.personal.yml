@@ -1,0 +1,31 @@
+services:
+  mealie-personal:
+    container_name: mealie-personal
+    image: ghcr.io/beatle72298/mealie-jd:latest
+    restart: always
+    volumes:
+      - mealie-jd-data:/app/data/
+    ports:
+      - 9000:9000
+    environment:
+      # Basic Configuration
+      ALLOW_SIGNUP: "false"
+      LOG_LEVEL: "INFO"
+
+      # Database Configuration
+      DB_ENGINE: sqlite # Use SQLite for simplicity
+
+      # Security Settings
+      SECRET_KEY: "your-secret-key-here" # Generate a secure random key
+      # Optional: Email Configuration (uncomment and configure if needed)
+      # SMTP_HOST: "your-smtp-server.com"
+      # SMTP_PORT: 587
+      # SMTP_FROM_NAME: "Mealie Personal"
+      # SMTP_AUTH_STRATEGY: "TLS"
+      # SMTP_FROM_EMAIL: "your-email@domain.com"
+      # SMTP_USER: "your-email@domain.com"
+      # SMTP_PASSWORD: "your-email-password"
+
+volumes:
+  mealie-jd-data:
+    driver: local

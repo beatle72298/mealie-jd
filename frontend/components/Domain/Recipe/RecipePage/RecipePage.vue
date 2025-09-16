@@ -58,6 +58,7 @@
               rendered.
             -->
             <v-col cols="12" sm="12" :md="8 + (isCookMode ? 1 : 0) * 4" :lg="8 + (isCookMode ? 1 : 0) * 4">
+              <RecipeNotes v-model="recipe.notes" :edit="isEditForm" />
               <RecipePageInstructions
                 v-model="recipe.recipeInstructions"
                 v-model:assets="recipe.assets"
@@ -73,7 +74,6 @@
               <div v-if="!$vuetify.display.mdAndUp">
                 <RecipePageOrganizers v-model="recipe" />
               </div>
-              <RecipeNotes v-model="recipe.notes" :edit="isEditForm" />
             </v-col>
           </v-row>
           <RecipePageFooter v-model="recipe" />
@@ -92,6 +92,12 @@
       v-show="isCookMode && !hasLinkedIngredients"
       key="cookmode"
     >
+      <!-- Notes section at top of cook mode -->
+      <div v-if="recipe.notes" class="px-4 py-2 bg-grey-lighten-4">
+        <h3 class="text-h6 mb-2 font-weight-medium opacity-80">{{ $t('recipe.notes') }}</h3>
+        <RecipeNotes v-model="recipe.notes" :edit="false" class="cook-mode-notes" />
+        <v-divider class="mt-2" />
+      </div>
       <!-- the calc is to account for the toolbar a more dynamic solution could be needed  -->
       <v-row style="height: 100%" no-gutters class="overflow-hidden">
         <v-col cols="12" sm="5" class="overflow-y-auto pl-4 pr-3 py-2" style="height: 100%">
@@ -123,6 +129,12 @@
       </v-row>
     </v-sheet>
     <v-sheet v-show="isCookMode && hasLinkedIngredients">
+      <!-- Notes section at top of cook mode -->
+      <div v-if="recipe.notes" class="px-2 px-md-4 py-2 bg-grey-lighten-4">
+        <h3 class="text-h6 mb-2 font-weight-medium opacity-80">{{ $t('recipe.notes') }}</h3>
+        <RecipeNotes v-model="recipe.notes" :edit="false" class="cook-mode-notes" />
+        <v-divider class="mt-2" />
+      </div>
       <div class="mt-2 px-2 px-md-4">
         <RecipePageScale v-model="scale" :recipe="recipe" />
       </div>
