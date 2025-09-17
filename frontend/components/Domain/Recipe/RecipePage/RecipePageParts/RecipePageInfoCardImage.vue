@@ -1,14 +1,27 @@
 <template>
-  <!-- YouTube embed -->
-  <div v-if="mediaInfo?.type === 'youtube'" class="youtube-container">
-    <iframe
-      :src="youTubeEmbedUrl"
+  <!-- YouTube embed over image -->
+  <div v-if="mediaInfo?.type === 'youtube'" class="position-relative">
+    <v-img
+      :key="imageKey"
+      :max-width="maxWidth"
+      min-height="50"
+      cover
       width="100%"
-      :height="imageHeight"
-      frameborder="0"
-      allowfullscreen
-      class="youtube-iframe"
-    ></iframe>
+      :height="hideImage ? undefined : imageHeight"
+      :src="recipeImageUrl"
+      class="d-print-none"
+      @error="hideImage = true"
+    />
+    <div class="youtube-overlay">
+      <iframe
+        :src="youTubeEmbedUrl"
+        width="100%"
+        height="100%"
+        frameborder="0"
+        allowfullscreen
+        class="youtube-iframe"
+      ></iframe>
+    </div>
   </div>
 
   <!-- Regular link wrapper -->
@@ -108,8 +121,13 @@ watch(
 </script>
 
 <style scoped>
-.youtube-container {
-  width: 100%;
+.youtube-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
 }
 
 .youtube-iframe {
