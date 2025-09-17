@@ -2,6 +2,7 @@ services:
   mealie-personal:
     container_name: mealie-personal
     image: ghcr.io/beatle72298/mealie-jd:latest
+    pull_policy: always
     restart: always
     volumes:
       - mealie-jd-data:/app/data/
